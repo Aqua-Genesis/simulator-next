@@ -8,7 +8,7 @@ export default function InputWidget({values, setValues, inputs, isSelectable, ha
     setValues(newValues);
   }
 
-  return <div className="flex flex-col justify-center h-full overflow-y-auto w-1/3 mx-16">
+  return <div className="flex flex-col justify-center h-full overflow-y-auto w-1/3 mx-20">
     {inputs.map((group) => <div key={group.description} className="flex flex-col items-center mb-6">
       <p
         className="default text-center text-sm"

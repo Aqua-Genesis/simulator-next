@@ -9,7 +9,7 @@ function PlanetFocus() {
     useFrame(({clock}) => {
         let x = Math.sin(clock.getElapsedTime() / 3.0);
         let z = Math.cos(clock.getElapsedTime() / 3.0);
-        // camera.position.set(x*5, 0, z*5);
+        camera.position.set(x*6, 0, z*6);
     })
 
     return

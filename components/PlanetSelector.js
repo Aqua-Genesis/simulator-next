@@ -1,10 +1,15 @@
+'use client'
 import Image from "next/image";
-import {Button} from "@/components/Buttons";
+import Link from "next/link";
 
-export default function PlanetSelector ({imageLink, imageSize, description}) {
-  return <div className="flex flex-col items-center w-fit p-4 bg-green2 rounded-2xl shadow-xl">
-    <Image className="mb-2" src={imageLink} alt={imageLink} width={imageSize} height={imageSize} />
-    <p className="mt-2">{description}</p>
-    <Button text="Select"/>
+export default function PlanetSelector ({type, handleSelect, imgSrc, imageSize, description}) {
+  return <div
+    className="flex items-center w-1/3 bg-red-500"
+  >
+    <Link className="min-w-full min-h-full" href="/simulation" onClick={()=>handleSelect(type)}>
+      <Image src={imgSrc} alt={imgSrc} width={imageSize} height={imageSize} />
+      <p className="default text-2xl mt-4">{description}</p>
+    </Link>
   </div>
+
 }

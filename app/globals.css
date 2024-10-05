@@ -11,4 +11,9 @@ body {
 html, body, #root {
   height: 100%;
   margin: unset;
+  overflow: hidden;
+}
+
+p, button {
+  color: #F5F5F5;
 }

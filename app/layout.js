@@ -7,9 +7,7 @@ const font = Afacad({ subsets: ['latin'] })
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={font.className}
-      >
+      <body className={font.className}>
         {children}
       </body>
     </html>

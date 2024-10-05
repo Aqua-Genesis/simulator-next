@@ -1,17 +1,23 @@
 export const planetList = [
   {
-    type: "planet",
-    imgSrc: "/earth.png",
+    type: "Planet",
+    imgSrc: "/home/planet.png",
+    imgSize: 250,
     description: "Ocean world outside the habitable zone in solar system",
+    colour: "blue1",
   },
   {
-    type: "rogue",
-    imgSrc: "/rogue.png",
+    type: "Rogue planet",
+    imgSrc: "/home/rogue.png",
+    imgSize: 270,
     description: "Ocean world without a star",
+    colour: "blue3",
   },
   {
-    type: "moon",
-    imgSrc: "/moon.png",
+    type: "Moon",
+    imgSrc: "/home/moon.png",
+    imgSize: 180,
     description: "Icy moon of a gas giant",
+    colour: "blue2",
   },
 ]

@@ -1,6 +1,7 @@
 'use client'
 import PlanetSelector from "@/components/PlanetSelector";
 import {planetList} from "@/components/constants";
+import Image from "next/image";
 
 export default function Page() {
 
@@ -16,16 +17,25 @@ export default function Page() {
       Create your own ocean world!
     </p>
 
-    <div className="flex w-full my-16">
+    <Image src="/home/parent_planet.png" alt="" width={500} height={200}
+           className="absolute bottom-0 right-0"
+    />
+    <Image src="/home/sun.png" alt="" width={80} height={80}
+           className="absolute top-20 -left-3"
+    />
+
+    <div className="flex w-full mt-20">
       {
         planetList.map(planet => <PlanetSelector
           handleSelect={handleSelect}
           type={planet.type} key={planet.type}
-          imgSrc={planet.imgSrc} imageSize={250}
+          imgSrc={planet.imgSrc} imgSize={planet.imgSize}
           description={planet.description}
+          colour={planet.colour}
         />)
       }
 
     </div>
+
   </div>)
 }

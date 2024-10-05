@@ -44,13 +44,13 @@ export default function Planet(props) {
     }),
     [testTexture]
   );
-  useFrame((state, delta) => {meshRef.current.rotation.y += delta})
+  useFrame((state, delta) => {meshRef.current.rotation.y += delta / 8.0})
   return (
     <mesh
       {...props}
       ref={meshRef}
     >
-      <sphereGeometry args={[1, 256, 128]} />
+      <sphereGeometry args={[1, 128, 64]} />
       <shaderMaterial
         fragmentShader={planetSurfaceFragmentShader}
         vertexShader={planetSurfaceVertexShader}

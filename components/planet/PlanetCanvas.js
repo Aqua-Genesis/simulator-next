@@ -2,6 +2,7 @@ import { Canvas, useThree, useFrame } from "@react-three/fiber";
 import Planet from "./Planet";
 import PlanetAtmos from "./PlanetAtmos";
 import { Euler, Matrix4, Vector3 } from "three/src/Three.js";
+import Background from "./Background";
 
 function PlanetFocus() {
     const { camera } = useThree()
@@ -17,8 +18,9 @@ function PlanetFocus() {
 export default function PlanetCanvas() {
     return (
     <Canvas
-        camera={{fov: 40, near: 0.1, far: 100, position: [0, 0, 3], projectionMatrix: Matrix4}}
+        camera={{fov: 45, near: 1, far: 1000, position: [0, 0, 3], projectionMatrix: Matrix4}}
     >
+        <Background/>
         <Planet/>
         <PlanetFocus/>
         <PlanetAtmos/>

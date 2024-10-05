@@ -141,7 +141,7 @@ export default function PlanetAtmos(props) {
       value: 4.0
     },
     u_falloff: {
-      value: 15.0
+      value: 30.0
     }
   }),
     []

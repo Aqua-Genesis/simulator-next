@@ -24,7 +24,7 @@ export default function Page() {
       handleSelect={()=>pass}
     />
 
-    <div className="flex items-center justify-center bg-black w-1/3">
+    <div className="flex items-center justify-center w-1/3 mx-8">
       <PlanetCanvas/>
     </div>
 

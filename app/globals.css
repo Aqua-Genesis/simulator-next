@@ -74,8 +74,8 @@ p, button, label {
   transform-origin: top left;
   left:0;
   top:var(--offset);
-  transform: rotate(-90deg) translateX(-100%);
-  border-radius: 0 var(--radius) var(--radius) 0;
+  transform: rotate(90deg) translateY(-100%);
+  border-radius: var(--radius) var(--radius) 0 0;
 }
 
 .bottom-right {
@@ -92,6 +92,6 @@ p, button, label {
   transform-origin:bottom left;
   left:0;
   bottom:var(--offset);
-  transform: rotate(-90deg) translateY(100%);
-  border-radius: 0 var(--radius) var(--radius) 0;
+  transform: rotate(90deg) translateX(-100%);
+  border-radius: var(--radius) var(--radius) 0 0;
 }

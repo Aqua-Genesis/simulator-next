@@ -19,6 +19,10 @@ p, button, label {
   color: #F5F5F5;
 }
 
+a {
+  cursor: default;
+}
+
 .default {
   font-family: "Afacad Flux", system-ui;
   font-optical-sizing: auto;

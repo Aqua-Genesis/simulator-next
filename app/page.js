@@ -6,7 +6,6 @@ export default function Page() {
 
   function handleSelect(type) {
     sessionStorage.setItem("planetType", type);
-
   }
 
   return (<div className="flex flex-col items-center bg-background h-full py-12 px-16 overflow-hidden">

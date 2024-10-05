@@ -9,7 +9,7 @@ function PlanetFocus() {
     useFrame(({clock}) => {
         let x = Math.sin(clock.getElapsedTime() / 3.0);
         let z = Math.cos(clock.getElapsedTime() / 3.0);
-        camera.position.set(x*3, 0, z*3);
+        camera.position.set(x*5, 0, z*5);
     })
 
     return
@@ -18,9 +18,9 @@ function PlanetFocus() {
 export default function PlanetCanvas() {
     return (
     <Canvas
-        camera={{fov: 45, near: 1, far: 1000, position: [0, 0, 3], projectionMatrix: Matrix4}}
+        camera={{fov: 45, near: 1, far: 1000, position: [3.5, 0, 3.5], projectionMatrix: Matrix4}}
     >
-        <Background/>
+        {/*<Background/>*/}
         <Planet/>
         <PlanetFocus/>
         <PlanetAtmos/>

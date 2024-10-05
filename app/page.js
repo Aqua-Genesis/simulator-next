@@ -9,10 +9,10 @@ export default function Page() {
   const router = useRouter();
   function handleSelect(type) {
     sessionStorage.setItem("planetType", type);
-    router.push("/simulation");
+    router.push("/setup");
   }
 
-  return (<div className="flex flex-col items-center bg-background h-full py-12 px-16 overflow-hidden">
+  return <div className="flex flex-col items-center bg-background h-full py-12 px-16 overflow-hidden">
     <p className="bebas text-blue2 text-7xl tracking-[0.15em]">
       Aqua Genesis
     </p>
@@ -40,5 +40,5 @@ export default function Page() {
 
     </div>
 
-  </div>)
+  </div>
 }

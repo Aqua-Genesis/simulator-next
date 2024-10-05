@@ -1,15 +1,26 @@
 'use client'
 import Image from "next/image";
-import Link from "next/link";
+import {useEffect, useRef, useState} from "react";
+import clsx from 'clsx';
 
-export default function PlanetSelector ({type, handleSelect, imgSrc, imageSize, description}) {
+export default function PlanetSelector ({type, handleSelect, imgSrc, imgSize, description, colour}) {
+
+  const [descShown, setDescShown] = useState(false);
+  function handleShow() {setDescShown(true)}
+  function handleHide() {setDescShown(false)}
+
+
   return <div
-    className="flex items-center w-1/3 bg-red-500"
+    className="flex flex-col items-center justify-center w-1/3 mx-8"
   >
-    <Link className="min-w-full min-h-full" href="/simulation" onClick={()=>handleSelect(type)}>
-      <Image src={imgSrc} alt={imgSrc} width={imageSize} height={imageSize} />
-      <p className="default text-2xl mt-4">{description}</p>
-    </Link>
+    <Image src={imgSrc} alt={imgSrc} width={imgSize} height={imgSize} onClick={() => handleSelect(type)}
+           className="hover-trigger hover:scale-110 transition active:scale-100"
+           onMouseEnter={() => handleShow()} onMouseLeave={() => handleHide()}
+    />
+    <p className={"default text-3xl mt-8" + " text-" + colour}>{type}</p>
+    <p className={clsx("hover-receiver default text-lg mt-4 text-center mx-8 leading-tight transition",
+      descShown ? "opacity-80" : "opacity-0")}
+    >{description}</p>
   </div>
 
 }

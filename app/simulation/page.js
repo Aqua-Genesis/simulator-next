@@ -1,29 +1,40 @@
 'use client'
 import PlanetCanvas from "@/components/planet/PlanetCanvas";
-import Slider from "@/components/Slider";
 import {useEffect, useState} from "react";
+import {defaultValues, inputsElements, inputsOther} from "@/components/constants";
+import InputWidget from "@/components/InputWidget";
 
 export default function Page() {
 
   const [planetType, setPlanetType] = useState("");
-  const [temp, setTemp] = useState();
+  const [values, setValues] = useState(defaultValues);
+
 
   useEffect(() => {
     setPlanetType(sessionStorage.getItem('planetType'));
   }, []);
 
-  return <div className="flex flex-row h-full overflow-hidden">
+  return <div className="flex flex-row flex-grow w-full h-full bg-background">
 
-    <div className="flex items-center justify-center bg-black w-2/3">
+    <InputWidget
+      values={values}
+      setValues={setValues}
+      inputs={inputsOther}
+      isSelectable={true}
+      handleSelect={()=>pass}
+    />
+
+    <div className="flex items-center justify-center bg-black w-1/3">
       <PlanetCanvas/>
     </div>
 
-    <div className="bg-background w-1/3">
-      <p>{planetType}</p>
-      <Slider
-        label="Temperature" range={[5, 10]}
-        value={temp} setValue={setTemp}
-      />
-    </div>
+    <InputWidget
+      values={values}
+      setValues={setValues}
+      inputs={inputsElements}
+      isSelectable={true}
+      handleSelect={()=>pass}
+    />
+
   </div>
 }

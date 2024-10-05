@@ -22,7 +22,7 @@ export const planetList = [
   },
 ]
 
-export const inputs = [
+export const inputsElements = [
   {
     description: "These elements increase the intensity of volcanism on the planet and are responsible for gas emissions into the water",
     inputs: [
@@ -88,6 +88,9 @@ export const inputs = [
       },
     ]
   },
+]
+
+export const inputsOther = [
   {
     description: "It dictates amount of radiation that planet receives",
     inputs: [
@@ -102,7 +105,7 @@ export const inputs = [
     description: "It dictates forces acting on water and air on global scale",
     inputs: [
       {
-        name: "Rotational period of a planet",
+        name: "Rotational period",
         colour: "#56a3a6"
       },
 
@@ -112,7 +115,7 @@ export const inputs = [
     description: "It corresponds with planets internal heat = volcanic activity",
     inputs: [
       {
-        name: "Age of a planet",
+        name: "Age",
         colour: "#56a3a6"
       },
     ]
@@ -121,7 +124,7 @@ export const inputs = [
     description: "It has an influence on every characteristic of a planet",
     inputs: [
       {
-        name: "Mass (size) of a planet",
+        name: "Mass",
         colour: "#56a3a6"
       },
     ]

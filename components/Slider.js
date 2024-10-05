@@ -6,7 +6,7 @@ export default function Slider({name, colour, range, value, handleChange, isSele
     <div className={isSelectable ? "w-4 h-4 rounded-full diw" : "w-4 h-4 rounded-full"}
          onClick={()=>handleSelect(name)}
     ></div>
-    <label htmlFor={name} className="text">
+    <label htmlFor={name} className="default">
       {name}
     </label>
     <input id={name} type={"range"} min={range[0]} max={range[1]} step={0.01}

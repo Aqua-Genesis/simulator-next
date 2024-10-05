@@ -1,19 +1,13 @@
 'use client'
 import InputWidget from "@/components/InputWidget";
-import {inputsElements, inputsOther} from "@/components/constants";
+import {inputsElements, inputsOther, defaultValues, colours} from "@/components/constants";
 import {useEffect, useState} from "react";
+import {useRouter} from "next/navigation";
 
 
 export default function Page() {
 
-  const defaultValues = {};
-  const colours = {};
-  for (const group of inputsElements.concat(inputsOther)) {
-    for (const input of group.inputs) {
-      defaultValues[input.name] = 0.5;
-      colours[input.name] = input.colour;
-    }
-  }
+  const router = useRouter();
   const [values, setValues] = useState(defaultValues);
   const [pieData, setPieData] = useState([]);
   useEffect(() => {
@@ -45,7 +39,17 @@ export default function Page() {
         />
 
         <div className="flex items-center justify-center w-1/3 h-full">
-          <p>Pie chart</p>
+          <p className="default">Pie chart</p>
+          <button
+            onClick={()=>router.push("/simulation")}
+            className="default text-gray-900 bg-blue2 text-2xl pt-3 pb-2 px-8 absolute -bottom-0"
+            style={{
+              borderTopLeftRadius: 30,
+              borderTopRightRadius: 30
+            }}
+          >
+            Begin simulation
+          </button>
         </div>
 
         <InputWidget

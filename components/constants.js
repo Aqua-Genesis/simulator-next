@@ -130,3 +130,13 @@ export const inputsOther = [
     ]
   },
 ]
+
+export const defaultValues = {};
+export const colours = {};
+for (const group of inputsElements.concat(inputsOther)) {
+  for (const input of group.inputs) {
+    defaultValues[input.name] = 0.5;
+    colours[input.name] = input.colour;
+  }
+}
+

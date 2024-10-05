@@ -3,6 +3,7 @@ import PlanetCanvas from "@/components/planet/PlanetCanvas";
 import {useEffect, useState} from "react";
 import {defaultValues, inputsElements, inputsOther} from "@/components/constants";
 import InputWidget from "@/components/InputWidget";
+import SideButton from "@/components/SideButton";
 
 export default function Page() {
 
@@ -15,6 +16,11 @@ export default function Page() {
   }, []);
 
   return <div className="flex flex-row flex-grow w-full h-full bg-background">
+
+    <SideButton
+      text="Elements"
+      position="top-right"
+    />
 
     <InputWidget
       values={values}

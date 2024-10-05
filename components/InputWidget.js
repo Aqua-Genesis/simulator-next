@@ -1,6 +1,6 @@
 import Slider from "@/components/Slider";
 
-export default function InputWidget({values, setValues, inputs}) {
+export default function InputWidget({values, setValues, inputs, isSelectable, handleSelect}) {
 
   function handleChange(name, value) {
     let newValues = {...values};
@@ -20,6 +20,8 @@ export default function InputWidget({values, setValues, inputs}) {
           range={[0, 1]}
           value={values[input.name]}
           handleChange={handleChange}
+          isSelectable={isSelectable}
+          handleSelect={handleSelect}
         />)}
     </div>)}
   </div>

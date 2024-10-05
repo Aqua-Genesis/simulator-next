@@ -40,6 +40,8 @@ export default function Page() {
           values={values}
           setValues={setValues}
           inputs={inputsOther}
+          isSelectable={false}
+          handleSelect={()=>pass}
         />
 
         <div className="flex items-center justify-center w-1/3 h-full">
@@ -50,7 +52,8 @@ export default function Page() {
           values={values}
           setValues={setValues}
           inputs={inputsElements}
-
+          isSelectable={false}
+          handleSelect={()=>pass}
         />
       </div>
     </div>

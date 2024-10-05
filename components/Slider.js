@@ -1,10 +1,11 @@
-import clsx from "clsx";
 import React from "react";
 
-export default function Slider({name, colour, range, value, handleChange}) {
+export default function Slider({name, colour, range, value, handleChange, isSelectable, handleSelect}) {
 
   return <div className="flex items-center w-full justify-between my-1">
-    <div className="diw w-4 h-4 rounded-full"></div>
+    <div className={isSelectable ? "w-4 h-4 rounded-full diw" : "w-4 h-4 rounded-full"}
+         onClick={()=>handleSelect(name)}
+    ></div>
     <label htmlFor={name} className="text">
       {name}
     </label>

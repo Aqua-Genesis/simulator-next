@@ -19,9 +19,10 @@ export default function Page() {
   const [planetType, setPlanetType] = useState("");
   const [values, setValues] = useState(defaultValues);
   const [overlays, setOverlays] = useState(overlayOptions);
-  const [leftPanel, setLeftPanel] = useState("none");
-  const [rightPanel, setRightPanel] = useState("none");
+  const [leftPanel, setLeftPanel] = useState("top");
+  const [rightPanel, setRightPanel] = useState("top");
   const [score, setScore] = useState(0);
+  const [achievements, setAchievements] = useState(["Sulphur", "Phosphorus"]);
 
   function handleLeftPanelChange (value) {
     if(leftPanel === value) setLeftPanel("none");
@@ -37,7 +38,8 @@ export default function Page() {
   }, []);
   useEffect(() => {
     sessionStorage.setItem('score', score.toString());
-  }, [score]);
+    sessionStorage.setItem('achievements', JSON.stringify(achievements));
+  }, [score, achievements]);
 
   return <div className="flex flex-row flex-grow w-full h-full bg-background px-24">
     <Logo/>
@@ -116,7 +118,7 @@ export default function Page() {
       
         volcanic={100} rotationSpeed={0.1}
         atmosDensity={6.0} atmosScatter={new Vector3(0.9, 1.4, 2.0)}
-        distance={6} lightDir={new Vector3(-2, -2, -2)}/>
+        distance={1} lightDir={new Vector3(-2, -2, -2)}/>
     </div>
 
     <InputWidget

@@ -180,3 +180,8 @@ export const lifeDescriptions = {}
 for (const life of lifeforms) {
   lifeDescriptions[life.name] = life.description;
 }
+
+export const lifeImages = {}
+for (const life of lifeforms) {
+  lifeImages[life.name] = life.imgSrc;
+}

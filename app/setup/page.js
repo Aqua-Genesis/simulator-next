@@ -37,7 +37,7 @@ export default function Page() {
           setValues={setValues}
           inputs={inputsOther}
           isSelectable={false}
-          handleSelect={()=>pass}
+          handleSelect={()=>{}}
           style={{
             width: "33%"
           }}
@@ -62,7 +62,7 @@ export default function Page() {
           setValues={setValues}
           inputs={inputsElements}
           isSelectable={false}
-          handleSelect={()=>pass}
+          handleSelect={()=>{}}
           style={{
             width: "33%"
           }}

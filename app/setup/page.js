@@ -12,6 +12,11 @@ export default function Page() {
   const router = useRouter();
   const [values, setValues] = useState(defaultValues);
   const [pieData, setPieData] = useState([]);
+  const [planetType, setPlanetType] = useState("");
+
+  useEffect(() => {
+    setPlanetType(sessionStorage.getItem('planetType'));
+  }, []);
 
   useEffect(() => {
     const newPieData = [];
@@ -35,6 +40,7 @@ export default function Page() {
       <div className="flex flex-row flex-grow w-full h-0 pt-8">
 
         <InputWidget
+          planetType={planetType}
           values={values}
           setValues={setValues}
           inputs={inputsOther}
@@ -60,6 +66,7 @@ export default function Page() {
         </div>
 
         <InputWidget
+          planetType={planetType}
           values={values}
           setValues={setValues}
           inputs={inputsElements}

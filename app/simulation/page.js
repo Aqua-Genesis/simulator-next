@@ -1,7 +1,7 @@
 'use client'
 import PlanetCanvas from "@/components/planet/PlanetCanvas";
 import {useEffect, useState} from "react";
-import {defaultValues, inputsElements, inputsOther, overlayOptions} from "@/components/constants";
+import {defaultValues, inputsElements, inputsOther, overlayOptions, planetNameFromID} from "@/components/constants";
 import InputWidget from "@/components/InputWidget";
 import SideButton from "@/components/SideButton";
 import OverlaySidebar from "@/components/OverlaySidebar";
@@ -88,18 +88,21 @@ export default function Page() {
     />
 
     <InputWidget
+      planetType={planetType}
       values={values}
       setValues={setValues}
       inputs={inputsOther}
       isSelectable={true}
-      handleSelect={()=>pass}
+      handleSelect={()=>{}}
       style={{
         position: "absolute", width: "25%", zIndex:10,
         left: leftPanel==="top" ? 100 : -500,
         opacity: leftPanel==="top" ? 1 : 0,
         transition: "left 0.5s ease, opacity 0.5s ease-out"
       }}
-    />
+    >
+      <p className="default mb-8 text-center">Planet type: {planetNameFromID[planetType]}</p>
+    </InputWidget>
     <OverlaySidebar
       overlays={overlays} setOverlays={setOverlays}
       style={{
@@ -122,11 +125,12 @@ export default function Page() {
     </div>
 
     <InputWidget
+      planetType={planetType}
       values={values}
       setValues={setValues}
       inputs={inputsElements}
       isSelectable={true}
-      handleSelect={()=>pass}
+      handleSelect={()=>{}}
       style={{
         position: "absolute", width: "25%",
         right: rightPanel==="top" ? 100 : -500,

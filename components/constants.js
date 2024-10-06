@@ -1,26 +1,37 @@
 export const planetList = [
   {
     type: "Planet",
+    type2: "Regular",
     imgSrc: "/home/planet.png",
     imgSize: 250,
     description: "Ocean world outside the habitable zone in solar system",
     colour: "blue1",
+    id: 1
   },
   {
     type: "Rogue planet",
+    type2: "Rogue",
     imgSrc: "/home/rogue.png",
     imgSize: 270,
     description: "Ocean world without a star",
     colour: "blue3",
+    id: 2
   },
   {
     type: "Moon",
+    type2: "Moon",
     imgSrc: "/home/moon.png",
     imgSize: 180,
     description: "Icy moon of a gas giant",
     colour: "blue2",
+    id: 3
   },
 ]
+
+export const planetNameFromID = {}
+for (const planet of planetList) {
+  planetNameFromID[planet.id] = planet.type2;
+}
 
 export const inputsElements = [
   {
@@ -38,7 +49,8 @@ export const inputsElements = [
         name: "Carbon",
         colour: "#4f6d7a"
       }
-    ]
+    ],
+    tag: "123"
   },
   {
     description: "These elements lower the intensity of volcanism on the planet, but make it more metallic",
@@ -47,7 +59,8 @@ export const inputsElements = [
         name: "Iron and Magnesium",
         colour: "#7d4848"
       },
-    ]
+    ],
+    tag: "123"
   },
   {
     description: "Increases overall volcanic activity on the planet",
@@ -56,7 +69,8 @@ export const inputsElements = [
         name: "Titanium",
         colour: "#a6a6a6"
       },
-    ]
+    ],
+    tag: "123"
   },
   {
     description: "Elongates planets volcanic period",
@@ -65,7 +79,8 @@ export const inputsElements = [
         name: "Radioactive elements",
         colour: "#c1ff72"
       },
-    ]
+    ],
+    tag: "123"
   },
   {
     description: "These might be important for life existence",
@@ -86,11 +101,22 @@ export const inputsElements = [
         name: "Nitrogen",
         colour: "#62759c"
       },
-    ]
+    ],
+    tag: "123"
   },
 ]
 
 export const inputsOther = [
+  {
+    description: "Has an effect on tidal forces and volcanic activity",
+    inputs: [
+      {
+        name: "Parent planet size",
+        colour: "#56a3a6"
+      },
+    ],
+    tag: "3"
+  },
   {
     description: "It dictates amount of radiation that planet receives",
     inputs: [
@@ -98,8 +124,8 @@ export const inputsOther = [
         name: "Distance from the sun",
         colour: "#56a3a6"
       },
-
-    ]
+    ],
+    tag: "13"
   },
   {
     description: "It dictates forces acting on water and air on global scale",
@@ -108,8 +134,8 @@ export const inputsOther = [
         name: "Rotational period",
         colour: "#56a3a6"
       },
-
-    ]
+    ],
+    tag: "123"
   },
   {
     description: "It corresponds with planets internal heat = volcanic activity",
@@ -118,7 +144,8 @@ export const inputsOther = [
         name: "Age",
         colour: "#56a3a6"
       },
-    ]
+    ],
+    tag: "123"
   },
   {
     description: "It has an influence on every characteristic of a planet",
@@ -127,7 +154,8 @@ export const inputsOther = [
         name: "Mass",
         colour: "#56a3a6"
       },
-    ]
+    ],
+    tag: "123"
   },
 ]
 

@@ -3,7 +3,7 @@ import Image from "next/image";
 import {useEffect, useRef, useState} from "react";
 import clsx from 'clsx';
 
-export default function PlanetSelector ({type, handleSelect, imgSrc, imgSize, description, colour}) {
+export default function PlanetSelector ({type, handleSelect, imgSrc, imgSize, description, colour, i_d}) {
 
   const [descShown, setDescShown] = useState(false);
   function handleShow() {setDescShown(true)}
@@ -13,7 +13,7 @@ export default function PlanetSelector ({type, handleSelect, imgSrc, imgSize, de
   return <div
     className="flex flex-col items-center justify-center w-1/3 mx-8"
   >
-    <Image src={imgSrc} alt={imgSrc} width={imgSize} height={imgSize} onClick={() => handleSelect(type)}
+    <Image src={imgSrc} alt={imgSrc} width={imgSize} height={imgSize} onClick={() => handleSelect(i_d)}
            className="hover-trigger hover:scale-110 transition active:scale-100"
            onMouseEnter={() => handleShow()} onMouseLeave={() => handleHide()}
     />

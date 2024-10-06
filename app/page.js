@@ -33,7 +33,7 @@ export default function Page() {
       {
         planetList.map(planet => <PlanetSelector
           handleSelect={handleSelect}
-          type={planet.type} key={planet.type}
+          type={planet.type} key={planet.type} i_d={planet.id}
           imgSrc={planet.imgSrc} imgSize={planet.imgSize}
           description={planet.description}
           colour={planet.colour}

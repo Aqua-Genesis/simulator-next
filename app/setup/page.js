@@ -4,6 +4,7 @@ import {inputsElements, inputsOther, defaultValues, colours} from "@/components/
 import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import Logo from "@/components/Logo";
+import PieChart from "@/components/chart";
 
 
 export default function Page() {
@@ -11,12 +12,18 @@ export default function Page() {
   const router = useRouter();
   const [values, setValues] = useState(defaultValues);
   const [pieData, setPieData] = useState([]);
+  const [planetType, setPlanetType] = useState("");
+
+  useEffect(() => {
+    setPlanetType(sessionStorage.getItem('planetType'));
+  }, []);
+
   useEffect(() => {
     const newPieData = [];
     for (const [key, value] of Object.entries(values)) {
       if (colours[key] === "#56a3a6") continue;
       newPieData.push({
-        label: key,
+        name: key,
         value: value,
         color: colours[key]
       })
@@ -33,18 +40,19 @@ export default function Page() {
       <div className="flex flex-row flex-grow w-full h-0 pt-8">
 
         <InputWidget
+          planetType={planetType}
           values={values}
           setValues={setValues}
           inputs={inputsOther}
           isSelectable={false}
-          handleSelect={()=>pass}
+          handleSelect={()=>{}}
           style={{
             width: "33%"
           }}
         />
 
         <div className="flex items-center justify-center w-1/3 h-full">
-          <p className="default">Pie chart</p>
+          <PieChart data={pieData}/>
           <button
             onClick={()=>router.push("/simulation")}
             className="default text-gray-900 bg-blue2 text-2xl pt-3 pb-2 px-8 absolute -bottom-0"
@@ -58,11 +66,12 @@ export default function Page() {
         </div>
 
         <InputWidget
+          planetType={planetType}
           values={values}
           setValues={setValues}
           inputs={inputsElements}
           isSelectable={false}
-          handleSelect={()=>pass}
+          handleSelect={()=>{}}
           style={{
             width: "33%"
           }}

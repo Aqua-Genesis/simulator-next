@@ -19,6 +19,10 @@ export default function Page() {
   }, []);
 
   useEffect(() => {
+    sessionStorage.setItem('values', JSON.stringify(values));
+  }, [values])
+
+  useEffect(() => {
     const newPieData = [];
     for (const [key, value] of Object.entries(values)) {
       if (colours[key] === "#56a3a6") continue;

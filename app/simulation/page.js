@@ -39,6 +39,7 @@ export default function Page() {
 
   useEffect(() => {
     setPlanetType(sessionStorage.getItem('planetType'));
+    setValues(JSON.parse(sessionStorage.getItem("values")));
   }, []);
   useEffect(() => {
     sessionStorage.setItem('score', score.toString());

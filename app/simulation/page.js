@@ -5,6 +5,7 @@ import {defaultValues, inputsElements, inputsOther, overlayOptions} from "@/comp
 import InputWidget from "@/components/InputWidget";
 import SideButton from "@/components/SideButton";
 import OverlaySidebar from "@/components/OverlaySidebar";
+import { Vector3 } from "three";
 
 function ph() {
   return (<div className="flex flex-col justify-center h-full overflow-y-auto w-1/3 mx-20"/>)
@@ -71,7 +72,14 @@ export default function Page() {
 
 
     <div className="flex items-center justify-center w-full h-full">
-      <PlanetCanvas/>
+      <PlanetCanvas overlay={0} 
+        // 0 - no
+        // 1 - volcanic
+        //
+
+        volcanic={100} rotationSpeed={0.1}
+        atmosDensity={6.0} atmosScatter={new Vector3(0.9, 1.4, 2.0)}
+        distance={3.5} lightDir={new Vector3(-2, -2, -2)}/>
     </div>
 
     <InputWidget

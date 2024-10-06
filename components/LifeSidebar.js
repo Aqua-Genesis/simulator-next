@@ -28,8 +28,8 @@ export default function LifeSidebar({style}) {
   return <div className="flex flex-col justify-center items-center h-full overflow-y-auto w-1/4 absolute" style={style}>
 
     <div className="flex flex-col items-center rounded-3xl px-6 py-4 mb-8">
-      <p className="default text-xl mb-2">{selectedLife}</p>
-      <p className="default">{lifeDescriptions[selectedLife]}</p>
+      <p className="default text-2xl font-bold mb-3 text-center">{selectedLife}</p>
+      <p className="default text-center leading-4">{lifeDescriptions[selectedLife]}</p>
     </div>
 
     <Achievements

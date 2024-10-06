@@ -54,3 +54,44 @@ p, button, label {
   background: #2f3c43;
   border-radius: 10px;
 }
+
+:root {
+  --offset: 15vh;
+  --radius: 25px;
+}
+
+.top-right {
+  position: absolute;
+  transform-origin: top right;
+  right:0;
+  top: var(--offset);
+  transform: rotate(-90deg) translateY(-100%);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.top-left {
+  position: absolute;
+  transform-origin: top left;
+  left:0;
+  top:var(--offset);
+  transform: rotate(90deg) translateY(-100%);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.bottom-right {
+  position: absolute;
+  transform-origin:bottom right;
+  right:0;
+  bottom:var(--offset);
+  transform: rotate(-90deg) translateX(100%);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.bottom-left {
+  position: absolute;
+  transform-origin:bottom left;
+  left:0;
+  bottom:var(--offset);
+  transform: rotate(90deg) translateX(-100%);
+  border-radius: var(--radius) var(--radius) 0 0;
+}

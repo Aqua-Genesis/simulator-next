@@ -1,6 +1,6 @@
 import Slider from "@/components/Slider";
 
-export default function InputWidget({values, setValues, inputs, isSelectable, handleSelect}) {
+export default function InputWidget({values, setValues, inputs, isSelectable, handleSelect, style}) {
 
   function handleChange(name, value) {
     let newValues = {...values};
@@ -8,7 +8,7 @@ export default function InputWidget({values, setValues, inputs, isSelectable, ha
     setValues(newValues);
   }
 
-  return <div className="flex flex-col justify-center h-full overflow-y-auto w-1/3 px-4 mx-4">
+  return <div className="flex flex-col justify-center h-full overflow-y-auto w-1/4 absolute" style={style}>
     {inputs.map((group) => <div key={group.description} className="flex flex-col items-center mb-6">
       <p
         className="default text-center text-sm"

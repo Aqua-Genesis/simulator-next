@@ -51,7 +51,8 @@ export default function Page() {
           }}
         />
 
-        <div className="flex items-center justify-center w-1/3 h-full">
+        <div className="flex items-center flex-col justify-center w-1/3 h-full">
+          <p className="default text-2xl -mb-10">Material composition</p>
           <PieChart data={pieData}/>
           <button
             onClick={()=>router.push("/simulation")}

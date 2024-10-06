@@ -54,6 +54,7 @@ export default function Page() {
       isSelectable={true}
       handleSelect={()=>pass}
       style={{
+        position: "absolute", width: "25%", zIndex:10,
         left: leftPanel ? 100 : -500,
         opacity: leftPanel ? 1 : 0,
         transition: "left 0.5s ease, opacity 0.5s ease-out"
@@ -79,7 +80,7 @@ export default function Page() {
 
         volcanic={100} rotationSpeed={0.1}
         atmosDensity={6.0} atmosScatter={new Vector3(0.9, 1.4, 2.0)}
-        distance={3.5} lightDir={new Vector3(-2, -2, -2)}/>
+        distance={6} lightDir={new Vector3(-2, -2, -2)}/>
     </div>
 
     <InputWidget
@@ -89,6 +90,7 @@ export default function Page() {
       isSelectable={true}
       handleSelect={()=>pass}
       style={{
+        position: "absolute", width: "25%",
         right: rightPanel ? 100 : -500,
         opacity: rightPanel ? 1 : 0,
         transition: "right 0.5s ease, opacity 0.5s ease-out"

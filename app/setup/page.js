@@ -36,6 +36,9 @@ export default function Page() {
           inputs={inputsOther}
           isSelectable={false}
           handleSelect={()=>pass}
+          style={{
+            width: "33%"
+          }}
         />
 
         <div className="flex items-center justify-center w-1/3 h-full">
@@ -58,6 +61,9 @@ export default function Page() {
           inputs={inputsElements}
           isSelectable={false}
           handleSelect={()=>pass}
+          style={{
+            width: "33%"
+          }}
         />
       </div>
     </div>

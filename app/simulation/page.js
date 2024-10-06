@@ -35,6 +35,9 @@ export default function Page() {
   useEffect(() => {
     setPlanetType(sessionStorage.getItem('planetType'));
   }, []);
+  useEffect(() => {
+    sessionStorage.setItem('score', score.toString());
+  }, [score]);
 
   return <div className="flex flex-row flex-grow w-full h-full bg-background px-24">
     <Logo/>

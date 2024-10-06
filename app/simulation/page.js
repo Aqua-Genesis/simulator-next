@@ -77,9 +77,9 @@ export default function Page() {
         // 1 - volcanic
         //
 
-        volcanic={100} rotationSpeed={0.1}
-        atmosDensity={6.0} atmosScatter={new Vector3(0.9, 1.4, 2.0)}
-        distance={6.0} lightDir={new Vector3(2, 0, 0)}/>
+        volcanic={100} rotationSpeed={0.3}
+        atmosDensity={8.0} atmosScatter={new Vector3(0.9, 1.4, 2.0)}
+        distance={5.0} lightDir={new Vector3(2, 0, 0)}/>
     </div>
 
     <InputWidget

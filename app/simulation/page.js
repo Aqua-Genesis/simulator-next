@@ -44,7 +44,7 @@ export default function Page() {
     sessionStorage.setItem('score', score.toString());
     sessionStorage.setItem('temperature', temperature.toString());
     sessionStorage.setItem('achievements', JSON.stringify(achievements));
-  }, [score, achievements]);
+  }, [score, achievements, temperature]);
 
   return <div className="flex flex-row flex-grow w-full h-full bg-background px-24">
     <Logo/>

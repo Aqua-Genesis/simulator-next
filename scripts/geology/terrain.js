@@ -78,19 +78,15 @@ export function get_terrain(){
     let geologicBreaks = terrain_list[1]
     let new_terrain = PointRender.subtract(planet.terrain, planet.geologicBreaks)
     let concatted = new_terrain.concat(planet.geologicBreaks)
-    console.log(concatted)
-    console.log("XDD")
+
     // let colours = Renderer.convertToVerticesColourBased(concatted)["colors"]
     let colours = Array(1500).fill([0.5, 0.5, 0])
     // Create a new array to hold the modified values
-    console.log("SDFSEFSFSDRGDG")
-    console.log(colours)
+
     let uv = xyzListToUvHeight(new_terrain)
-    console.log(uv)
     for (let i = 0; i < uv.length; i++) {
-        console.log(colours[i])
         uv[i][3] = colours[i];
     }
-    console.log(uv)
+
     return uv
 }

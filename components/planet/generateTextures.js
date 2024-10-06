@@ -79,7 +79,6 @@ export function getTextureFromPoints(points, renderer) {
   const size = width * height * 4; // 4 components per pixel (RGBA)
   const data = new Uint8Array(size);
 
-  console.log(points);
   for (let i = 0; i < size; i++) {
     data[i] = 0;
   }
@@ -123,7 +122,6 @@ export function getTextureFromPoints2(points, renderer) {
   const size = width * height * 4; // 4 components per pixel (RGBA)
   const data = new Uint8Array(size);
 
-  console.log(points);
   for (let i = 0; i < size; i++) {
     data[i] = 0;
   }

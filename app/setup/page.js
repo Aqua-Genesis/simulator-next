@@ -3,6 +3,7 @@ import InputWidget from "@/components/InputWidget";
 import {inputsElements, inputsOther, defaultValues, colours} from "@/components/constants";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
+import Logo from "@/components/Logo";
 
 
 export default function Page() {
@@ -25,6 +26,7 @@ export default function Page() {
 
   return (
     <div className="flex flex-col items-center bg-background min-h-screen py-12 px-8">
+      <Logo/>
       <p className="bebas text-blue2 text-5xl tracking-wide">
         Starting parameters
       </p>

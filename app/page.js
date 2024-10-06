@@ -3,6 +3,8 @@ import PlanetSelector from "@/components/PlanetSelector";
 import {planetList} from "@/components/constants";
 import Image from "next/image";
 import {useRouter} from "next/navigation";
+import Logo from "@/components/Logo";
+
 
 export default function Page() {
 
@@ -24,7 +26,7 @@ export default function Page() {
            className="absolute bottom-0 right-0"
     />
     <Image src="/home/sun.png" alt="" width={80} height={80}
-           className="absolute top-20 -left-3"
+           className="absolute top-[100px] -left-3"
     />
 
     <div className="flex w-full mt-20">

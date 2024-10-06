@@ -7,6 +7,7 @@ import SideButton from "@/components/SideButton";
 import OverlaySidebar from "@/components/OverlaySidebar";
 import { Vector3 } from "three";
 import LifeSidebar from "@/components/LifeSidebar";
+import Logo from "@/components/Logo";
 
 function ph() {
   return (<div className="flex flex-col justify-center h-full overflow-y-auto w-1/3 mx-20"/>)
@@ -26,7 +27,7 @@ export default function Page() {
   }, []);
 
   return <div className="flex flex-row flex-grow w-full h-full bg-background px-24">
-
+    <Logo/>
     <SideButton
       text="Elements"
       position="top-right"

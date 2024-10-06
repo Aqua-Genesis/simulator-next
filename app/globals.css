@@ -56,7 +56,7 @@ p, button, label {
 }
 
 :root {
-  --offset: 15vh;
+  --offset: 25vh;
   --radius: 25px;
 }
 

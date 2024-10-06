@@ -1,9 +1,10 @@
 'use client'
-export function Button({text, onClick}) {
+export function Button({text, onClick, style}) {
   return (
     <button
-      className="default text-2xl bg-green4 px-4 py-1 rounded-full mt-2"
+      className="default text-xl text-gray-900 bg-blue2 px-6 py-2 rounded-full"
       onClick={onClick}
+      style={style}
     >
       {text}
     </button>

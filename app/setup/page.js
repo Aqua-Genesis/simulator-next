@@ -3,6 +3,7 @@ import InputWidget from "@/components/InputWidget";
 import {inputsElements, inputsOther, defaultValues, colours} from "@/components/constants";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
+import Logo from "@/components/Logo";
 
 
 export default function Page() {
@@ -25,6 +26,7 @@ export default function Page() {
 
   return (
     <div className="flex flex-col items-center bg-background min-h-screen py-12 px-8">
+      <Logo/>
       <p className="bebas text-blue2 text-5xl tracking-wide">
         Starting parameters
       </p>
@@ -36,6 +38,9 @@ export default function Page() {
           inputs={inputsOther}
           isSelectable={false}
           handleSelect={()=>pass}
+          style={{
+            width: "33%"
+          }}
         />
 
         <div className="flex items-center justify-center w-1/3 h-full">
@@ -58,6 +63,9 @@ export default function Page() {
           inputs={inputsElements}
           isSelectable={false}
           handleSelect={()=>pass}
+          style={{
+            width: "33%"
+          }}
         />
       </div>
     </div>

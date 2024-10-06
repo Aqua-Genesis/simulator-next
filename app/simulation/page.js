@@ -6,45 +6,80 @@ import InputWidget from "@/components/InputWidget";
 import SideButton from "@/components/SideButton";
 import OverlaySidebar from "@/components/OverlaySidebar";
 import { Vector3 } from "three";
+import LifeSidebar from "@/components/LifeSidebar";
+import Logo from "@/components/Logo";
+import {Button} from "@/components/Buttons";
+import {useRouter} from "next/navigation";
+import LifeScore from "@/components/LifeScore";
 
-function ph() {
-  return (<div className="flex flex-col justify-center h-full overflow-y-auto w-1/3 mx-20"/>)
-}
 
 export default function Page() {
 
+  const router = useRouter();
   const [planetType, setPlanetType] = useState("");
   const [values, setValues] = useState(defaultValues);
   const [overlays, setOverlays] = useState(overlayOptions);
-  const [leftPanel, setLeftPanel] = useState(true);
-  const [rightPanel, setRightPanel] = useState(true);
+  const [leftPanel, setLeftPanel] = useState("none");
+  const [rightPanel, setRightPanel] = useState("none");
+  const [score, setScore] = useState(0);
 
+  function handleLeftPanelChange (value) {
+    if(leftPanel === value) setLeftPanel("none");
+    else setLeftPanel(value);
+  }
+  function handleRightPanelChange (value) {
+    if(rightPanel === value) setRightPanel("none");
+    else setRightPanel(value);
+  }
 
   useEffect(() => {
     setPlanetType(sessionStorage.getItem('planetType'));
   }, []);
 
   return <div className="flex flex-row flex-grow w-full h-full bg-background px-24">
+    <Logo/>
+
+    <LifeScore score={score} style={{
+      position: "absolute",
+      top: "10vh",
+      left: "50%",
+      zIndex: 20,
+      transform: "translate(-50%, -50%)",
+    }}/>
+
+    <Button text="Finished!" onClick={()=>router.push("/finish")}
+            style={{
+              position: "absolute",
+              bottom: "5vh",
+              left: "50%",
+              zIndex: 20,
+              transform: "translate(-50%, -50%)",
+            }}
+    />
 
     <SideButton
       text="Elements"
       position="top-right"
-      onClick={() => setRightPanel(true)}
+      selected={rightPanel === "top"}
+      onClick={() => handleRightPanelChange("top")}
     />
     <SideButton
       text="Lifeforms"
       position="bottom-right"
-      onClick={() => setRightPanel(false)}
+      selected={rightPanel === "bottom"}
+      onClick={() => handleRightPanelChange("bottom")}
     />
     <SideButton
       text="Parameters"
       position="top-left"
-      onClick={() => setLeftPanel(true)}
+      selected={leftPanel === "top"}
+      onClick={() => handleLeftPanelChange("top")}
     />
     <SideButton
       text="Overlays"
       position="bottom-left"
-      onClick={() => setLeftPanel(false)}
+      selected={leftPanel === "bottom"}
+      onClick={() => handleLeftPanelChange("bottom")}
     />
 
     <InputWidget
@@ -54,32 +89,31 @@ export default function Page() {
       isSelectable={true}
       handleSelect={()=>pass}
       style={{
-        left: leftPanel ? 100 : -500,
-        opacity: leftPanel ? 1 : 0,
+        position: "absolute", width: "25%", zIndex:10,
+        left: leftPanel==="top" ? 100 : -500,
+        opacity: leftPanel==="top" ? 1 : 0,
         transition: "left 0.5s ease, opacity 0.5s ease-out"
       }}
     />
     <OverlaySidebar
       overlays={overlays} setOverlays={setOverlays}
       style={{
-        left: leftPanel ? -500 : 100,
-        opacity: leftPanel ? 0 : 1,
+        left: leftPanel==="bottom" ? 100 : -500,
+        opacity: leftPanel==="bottom" ? 1 : 0,
         transition: "left 0.5s ease, opacity 0.5s ease-out"
       }}
     />
 
 
-
-
     <div className="flex items-center justify-center w-full h-full">
-      <PlanetCanvas overlay={0} 
+      <PlanetCanvas overlay={overlays["Volcanic activity hotspots"] ? 1 : 0}
         // 0 - no
         // 1 - volcanic
         //
-
-        volcanic={100} rotationSpeed={0.3}
-        atmosDensity={8.0} atmosScatter={new Vector3(0.9, 1.4, 2.0)}
-        distance={5.0} lightDir={new Vector3(2, 0, 0)}/>
+      
+        volcanic={100} rotationSpeed={0.1}
+        atmosDensity={6.0} atmosScatter={new Vector3(0.9, 1.4, 2.0)}
+        distance={6} lightDir={new Vector3(-2, -2, -2)}/>
     </div>
 
     <InputWidget
@@ -89,16 +123,16 @@ export default function Page() {
       isSelectable={true}
       handleSelect={()=>pass}
       style={{
-        right: rightPanel ? 100 : -500,
-        opacity: rightPanel ? 1 : 0,
+        position: "absolute", width: "25%",
+        right: rightPanel==="top" ? 100 : -500,
+        opacity: rightPanel==="top" ? 1 : 0,
         transition: "right 0.5s ease, opacity 0.5s ease-out"
       }}
     />
-    <OverlaySidebar
-      overlays={overlays} setOverlays={setOverlays}
+    <LifeSidebar
       style={{
-        right: rightPanel ? -500 : 100,
-        opacity: rightPanel ? 0 : 1,
+        right: rightPanel==="bottom" ? 100 : -500,
+        opacity: rightPanel==="bottom" ? 1 : 0,
         transition: "right 0.5s ease, opacity 0.5s ease-out"
       }}
     />

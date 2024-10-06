@@ -9,18 +9,23 @@ import { Vector3 } from "three";
 import LifeSidebar from "@/components/LifeSidebar";
 import Logo from "@/components/Logo";
 
-function ph() {
-  return (<div className="flex flex-col justify-center h-full overflow-y-auto w-1/3 mx-20"/>)
-}
 
 export default function Page() {
 
   const [planetType, setPlanetType] = useState("");
   const [values, setValues] = useState(defaultValues);
   const [overlays, setOverlays] = useState(overlayOptions);
-  const [leftPanel, setLeftPanel] = useState(true);
-  const [rightPanel, setRightPanel] = useState(true);
+  const [leftPanel, setLeftPanel] = useState("none");
+  const [rightPanel, setRightPanel] = useState("none");
 
+  function handleLeftPanelChange (value) {
+    if(leftPanel === value) setLeftPanel("none");
+    else setLeftPanel(value);
+  }
+  function handleRightPanelChange (value) {
+    if(rightPanel === value) setRightPanel("none");
+    else setRightPanel(value);
+  }
 
   useEffect(() => {
     setPlanetType(sessionStorage.getItem('planetType'));
@@ -31,22 +36,26 @@ export default function Page() {
     <SideButton
       text="Elements"
       position="top-right"
-      onClick={() => setRightPanel(true)}
+      selected={rightPanel === "top"}
+      onClick={() => handleRightPanelChange("top")}
     />
     <SideButton
       text="Lifeforms"
       position="bottom-right"
-      onClick={() => setRightPanel(false)}
+      selected={rightPanel === "bottom"}
+      onClick={() => handleRightPanelChange("bottom")}
     />
     <SideButton
       text="Parameters"
       position="top-left"
-      onClick={() => setLeftPanel(true)}
+      selected={leftPanel === "top"}
+      onClick={() => handleLeftPanelChange("top")}
     />
     <SideButton
       text="Overlays"
       position="bottom-left"
-      onClick={() => setLeftPanel(false)}
+      selected={leftPanel === "bottom"}
+      onClick={() => handleLeftPanelChange("bottom")}
     />
 
     <InputWidget
@@ -57,23 +66,23 @@ export default function Page() {
       handleSelect={()=>pass}
       style={{
         position: "absolute", width: "25%", zIndex:10,
-        left: leftPanel ? 100 : -500,
-        opacity: leftPanel ? 1 : 0,
+        left: leftPanel==="top" ? 100 : -500,
+        opacity: leftPanel==="top" ? 1 : 0,
         transition: "left 0.5s ease, opacity 0.5s ease-out"
       }}
     />
     <OverlaySidebar
       overlays={overlays} setOverlays={setOverlays}
       style={{
-        left: leftPanel ? -500 : 100,
-        opacity: leftPanel ? 0 : 1,
+        left: leftPanel==="bottom" ? 100 : -500,
+        opacity: leftPanel==="bottom" ? 1 : 0,
         transition: "left 0.5s ease, opacity 0.5s ease-out"
       }}
     />
 
 
     <div className="flex items-center justify-center w-full h-full">
-      <PlanetCanvas overlay={0}
+      <PlanetCanvas overlay={overlays["Volcanic activity hotspots"] ? 1 : 0}
         // 0 - no
         // 1 - volcanic
         //
@@ -91,15 +100,15 @@ export default function Page() {
       handleSelect={()=>pass}
       style={{
         position: "absolute", width: "25%",
-        right: rightPanel ? 100 : -500,
-        opacity: rightPanel ? 1 : 0,
+        right: rightPanel==="top" ? 100 : -500,
+        opacity: rightPanel==="top" ? 1 : 0,
         transition: "right 0.5s ease, opacity 0.5s ease-out"
       }}
     />
     <LifeSidebar
       style={{
-        right: rightPanel ? -500 : 100,
-        opacity: rightPanel ? 0 : 1,
+        right: rightPanel==="bottom" ? 100 : -500,
+        opacity: rightPanel==="bottom" ? 1 : 0,
         transition: "right 0.5s ease, opacity 0.5s ease-out"
       }}
     />

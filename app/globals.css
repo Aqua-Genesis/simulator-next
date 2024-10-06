@@ -58,9 +58,11 @@ p, button, label {
 :root {
   --offset: 25vh;
   --radius: 25px;
+  --width: 20vh;
 }
 
 .top-right {
+  width: var(--width);
   position: absolute;
   transform-origin: top right;
   right:0;
@@ -70,6 +72,7 @@ p, button, label {
 }
 
 .top-left {
+  width: var(--width);
   position: absolute;
   transform-origin: top left;
   left:0;
@@ -79,6 +82,7 @@ p, button, label {
 }
 
 .bottom-right {
+  width: var(--width);
   position: absolute;
   transform-origin:bottom right;
   right:0;
@@ -88,6 +92,7 @@ p, button, label {
 }
 
 .bottom-left {
+  width: var(--width);
   position: absolute;
   transform-origin:bottom left;
   left:0;

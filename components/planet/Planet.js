@@ -1,13 +1,16 @@
 import { useMemo, useRef } from "react";
-import { useFrame } from "react-three-fiber";
+import { useFrame, useThree } from "react-three-fiber";
 import { Color } from "three";
 import { TextureLoader, Vector3 } from "three/src/Three.js";
+import { getTextureFromPoints } from "./generateTextures";
+import { getTemperaturePoints } from "./temperature";
 
 const planetSurfaceFragmentShader = `
 uniform vec3 u_color;
 uniform sampler2D u_surface;
 uniform sampler2D u_temperature;
 uniform vec3 u_lightDir;
+uniform int u_overlay;
 varying vec2 v_uv;
 varying vec3 v_normal;
 
@@ -31,9 +34,12 @@ vec3 hsv2rgb(vec3 c)
 
 void main() {
   vec3 baseColor = texture(u_surface, v_uv).xyz;
-  vec3 temp = texture(u_temperature, v_uv).rgb;
-  // temp = vec3(rgb2hsv(temp).x);
-  vec4 final_color = vec4(temp, 1.0);
+  vec4 final_color = vec4(baseColor * clamp(dot(v_normal, -normalize(u_lightDir)), 0.02, 1.0), 1.0);
+
+  if(u_overlay == 1) {
+    vec4 temp = texture(u_temperature, v_uv);
+    final_color = vec4(mix(final_color.xyz, temp.rgb, temp.a), 1.0);
+  }
 
   gl_FragColor = final_color;
 }
@@ -51,9 +57,10 @@ void main() {
 
 export default function Planet(props) {
   const meshRef = useRef()
+  let { gl } = useThree();
   let loader = new TextureLoader()
   let testTexture = loader.load("planetTest.jpg")
-  let temperature = loader.load("heatmap.jpg")
+  let temperature = getTextureFromPoints(getTemperaturePoints(), gl)
   const uniforms = useMemo(
     () => ({
       u_color: {
@@ -67,6 +74,9 @@ export default function Planet(props) {
       },
       u_temperature: {
         value: temperature
+      },
+      u_overlay: {
+        value: 1
       }
     }),
     [testTexture, temperature]

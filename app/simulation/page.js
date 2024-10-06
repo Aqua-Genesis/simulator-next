@@ -69,7 +69,7 @@ export default function Page() {
 
 
     <div className="flex items-center justify-center w-full h-full">
-      <PlanetCanvas/>
+      <PlanetCanvas overlay={1} volcanic={100} rotationSpeed={0.1}/>
     </div>
 
     <InputWidget

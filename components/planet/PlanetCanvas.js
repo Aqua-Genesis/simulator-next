@@ -15,13 +15,13 @@ function PlanetFocus() {
     return
 }
 
-export default function PlanetCanvas() {
+export default function PlanetCanvas(props) {
     return (
     <Canvas
         camera={{fov: 45, near: 1, far: 1000, position: [3.5, 0, 3.5], projectionMatrix: Matrix4}}
     >
         {/*<Background/>*/}
-        <Planet/>
+        <Planet overlay={props.overlay} volcanic={props.volcanic} rotationSpeed={props.rotationSpeed}/>
         <PlanetFocus/>
         <PlanetAtmos/>
     </Canvas>

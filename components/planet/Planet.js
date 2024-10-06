@@ -43,6 +43,7 @@ vec3 vulkanic(float val) {
 }
 
 void main() {
+  gl_FragColor = vec4(v_normal, 1.0);
   vec3 baseColor = texture(u_surface, v_uv).xyz;
   vec3 normal = texture(u_normal, v_uv).xyz * 2.0 - 1.0;
   normal = normalize(tbn * normal);
@@ -56,7 +57,6 @@ void main() {
   }
 
   gl_FragColor = final_color;
-  // gl_FragColor = vec4(normal, 1.0);
 }
 `;
 const planetSurfaceVertexShader = `
@@ -112,9 +112,6 @@ export default function Planet(props) {
     }),
     [colorTexture, temperature, normalTexture, props.overlay, props.lightDir]
   );
-  useFrame((state, delta) => {
-    meshRef.current.rotation.y += delta * props.rotationSpeed
-  })
 
   const geometry = new SphereGeometry(1.0, 128, 64)
   geometry.computeVertexNormals()

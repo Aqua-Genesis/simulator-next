@@ -146,3 +146,37 @@ export const overlayOptions = {
   "Volcanic activity hotspots": false,
   "Life appearances": false,
 }
+
+export const lifeforms = [
+  {
+    name: "Silicon",
+    imgSrc: "/life/silicon.png",
+    description: "sdf s s kfsdkf sjfsjdfjkls dfjklsd fkjlsd fkjlsd fkjsdf kjldsf kjldsf kjlsf khjl sd."
+  },
+  {
+    name: "Nitrogen",
+    imgSrc: "/life/nitrogen.png",
+    description: "shfkjsdksdsdfsdkf  jk dkjlsf jklsf jkls fjklsd kjsdfs ahsdahskl"
+  },
+  {
+    name: "Sulphur",
+    imgSrc: "/life/sulphur.png",
+    description: "sdoierfjw joeji oweiof wid owiwifwdveijf nwefjiw fjwf ioef hiwefhe"
+  },
+  {
+    name: "Titanium",
+    imgSrc: "/life/titanium.png",
+    description: "sdfioefij oerigpowef jioefijo fiwei wi fweijo wqhi foejiof wj mjif ijwef jiegfijowj erhg wejf we "
+  },
+  {
+    name: "Phosphorus",
+    imgSrc: "/life/phosphor.png",
+    description: "wefweijo ejgi wefi rei fqioforeg foqwdwofijw jdiowf jwid wejf iwefj wei fuwe fuiwefuwefu wef "
+  },
+
+]
+
+export const lifeDescriptions = {}
+for (const life of lifeforms) {
+  lifeDescriptions[life.name] = life.description;
+}

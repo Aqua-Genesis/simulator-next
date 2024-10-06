@@ -6,6 +6,7 @@ import InputWidget from "@/components/InputWidget";
 import SideButton from "@/components/SideButton";
 import OverlaySidebar from "@/components/OverlaySidebar";
 import { Vector3 } from "three";
+import LifeSidebar from "@/components/LifeSidebar";
 
 function ph() {
   return (<div className="flex flex-col justify-center h-full overflow-y-auto w-1/3 mx-20"/>)
@@ -70,10 +71,8 @@ export default function Page() {
     />
 
 
-
-
     <div className="flex items-center justify-center w-full h-full">
-      <PlanetCanvas overlay={0} 
+      <PlanetCanvas overlay={0}
         // 0 - no
         // 1 - volcanic
         //
@@ -96,8 +95,7 @@ export default function Page() {
         transition: "right 0.5s ease, opacity 0.5s ease-out"
       }}
     />
-    <OverlaySidebar
-      overlays={overlays} setOverlays={setOverlays}
+    <LifeSidebar
       style={{
         right: rightPanel ? -500 : 100,
         opacity: rightPanel ? 0 : 1,

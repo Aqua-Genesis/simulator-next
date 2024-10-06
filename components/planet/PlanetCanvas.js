@@ -23,7 +23,7 @@ export default function PlanetCanvas(props) {
         {/*<Background/>*/}
         <Planet overlay={props.overlay} volcanic={props.volcanic} rotationSpeed={props.rotationSpeed}/>
         <PlanetFocus/>
-        <PlanetAtmos/>
+        <PlanetAtmos atmosDensity={props.atmosDensity} atmosScatter={props.atmosScatter}/>
     </Canvas>
     )
 }

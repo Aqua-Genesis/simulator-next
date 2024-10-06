@@ -1,3 +1,4 @@
+'use client'
 export default function LifeScore({score, style}) {
   let s = "000" + score;
   s = s.substring(s.length-4);

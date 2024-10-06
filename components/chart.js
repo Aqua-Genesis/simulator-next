@@ -30,6 +30,7 @@ export default function PieChart({data}) {
     pieSliceTextStyle: {
       color: "#222", // Change percentage text color to black
     },
+    pieHole: 0.4,
   };
 
   return <Chart

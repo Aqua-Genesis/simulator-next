@@ -46,7 +46,6 @@ export class PlanetRenderer{
             return new PointRender(elem[0], elem[1], elem[2], "#00F")
         })
 
-        console.log(this.planet.geologicBreaks)
         let breakRenders = Array.from(this.planet.geologicBreaks).map(elem => {
             return new PointRender(elem[0], elem[1], elem[2], "#F00")
         })

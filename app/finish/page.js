@@ -41,9 +41,10 @@ export default function Page() {
         <p className="default text-blue2 text-3xl">Planet life score</p>
         <p className="default text-blue1 font-extrabold text-8xl">{score}</p>
         <p className="default text-blue2 text-2xl mt-8">Planet avg. temperature</p>
-        <p className="default text-blue1 font-extrabold text-7xl">{temperature}</p>
+        <p className="default text-blue1 font-extrabold text-7xl">{temperature}<span className="text-4xl ml-1">°C</span></p>
         <p className="default text-blue2 text-2xl mt-8 mb-4">Achievements</p>
         <Achievements
+          size={50}
           selectedLife={""} setSelectedLife={()=>{}}
           highlight={false} list={achievementList}
         />

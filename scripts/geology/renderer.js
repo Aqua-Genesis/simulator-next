@@ -14,10 +14,9 @@ export class Renderer {
 
     initialSetup(mode) {
         this.scene = new Scene();
-        this.camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        this.camera = new PerspectiveCamera(75, 1, 0.1, 1000);
         this.renderer = new WebGLRenderer();
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(this.renderer.domElement);
+        this.renderer.setSize(1000, 1000);
 
         const geometry = new BufferGeometry();
         let vertices, colors;

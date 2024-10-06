@@ -1,7 +1,7 @@
 import { useMemo, useRef } from "react";
 import { useFrame, useThree } from "react-three-fiber";
 import { Color } from "three";
-import { SphereGeometry, TextureLoader, Vector3 } from "three/src/Three.js";
+import { ShaderMaterial, SphereGeometry, TextureLoader, Vector3 } from "three/src/Three.js";
 import { getTextureFromPoints } from "./generateTextures";
 import { getTemperaturePoints } from "./temperature";
 
@@ -79,6 +79,7 @@ void main() {
 
 export default function Planet(props) {
   const meshRef = useRef()
+  const matRef = useRef()
   let { gl } = useThree();
   let loader = new TextureLoader()
   let colorTexture = loader.load("planet.jpg")
@@ -102,7 +103,7 @@ export default function Planet(props) {
         value: temperature
       },
       u_overlay: {
-        value: props.overlay
+        value: 0
         // 1 - vulkanic
         // 2 - odlodzona
         // 3 - odwodniona
@@ -110,12 +111,24 @@ export default function Planet(props) {
         // 5 - minerały
       }
     }),
-    [colorTexture, temperature, normalTexture, props.overlay, props.lightDir]
+    [colorTexture, temperature, normalTexture, props.lightDir]
   );
+
+  useFrame(() => {
+    matRef.current.uniforms.u_overlay.value = props.overlay;
+  })
 
   const geometry = new SphereGeometry(1.0, 128, 64)
   geometry.computeVertexNormals()
   geometry.computeTangents()
+
+  const material = new ShaderMaterial({
+    vertexShader: planetSurfaceVertexShader,
+    fragmentShader: planetSurfaceFragmentShader,
+    uniforms: uniforms,
+  })
+
+  matRef.current = material
 
   return (
     <mesh
@@ -123,11 +136,7 @@ export default function Planet(props) {
       ref={meshRef}
       geometry={geometry}
     >
-      <shaderMaterial
-        fragmentShader={planetSurfaceFragmentShader}
-        vertexShader={planetSurfaceVertexShader}
-        uniforms={uniforms}
-      />
+      <primitive object={matRef.current} attach="material" />
     </mesh>
   )
 }

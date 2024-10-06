@@ -160,13 +160,13 @@ export default function PlanetAtmos(props) {
   });
 
   const shaderMaterial = useMemo(() => {
-        return new ShaderMaterial({
-            vertexShader: planetAtmosVertexShader,
-            fragmentShader: planetAtmosFragmentShader,
-            uniforms: uniforms,
+    return new ShaderMaterial({
+      vertexShader: planetAtmosVertexShader,
+      fragmentShader: planetAtmosFragmentShader,
+      uniforms: uniforms,
       transparent: true
-        });
-    }, [uniforms]);
+    });
+  }, [uniforms]);
 
   ref.current = shaderMaterial
 

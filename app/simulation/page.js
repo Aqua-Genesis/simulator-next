@@ -1,7 +1,7 @@
 'use client'
 import PlanetCanvas from "@/components/planet/PlanetCanvas";
 import {useEffect, useState} from "react";
-import {defaultValues, inputsElements, inputsOther} from "@/components/constants";
+import {defaultValues, inputsElements, inputsOther, overlayOptions} from "@/components/constants";
 import InputWidget from "@/components/InputWidget";
 import SideButton from "@/components/SideButton";
 import OverlaySidebar from "@/components/OverlaySidebar";
@@ -15,6 +15,7 @@ export default function Page() {
 
   const [planetType, setPlanetType] = useState("");
   const [values, setValues] = useState(defaultValues);
+  const [overlays, setOverlays] = useState(overlayOptions);
   const [leftPanel, setLeftPanel] = useState(true);
   const [rightPanel, setRightPanel] = useState(true);
 
@@ -59,6 +60,7 @@ export default function Page() {
       }}
     />
     <OverlaySidebar
+      overlays={overlays} setOverlays={setOverlays}
       style={{
         left: leftPanel ? -500 : 100,
         opacity: leftPanel ? 0 : 1,
@@ -81,7 +83,17 @@ export default function Page() {
       isSelectable={true}
       handleSelect={()=>pass}
       style={{
-        right: 100
+        right: rightPanel ? 100 : -500,
+        opacity: rightPanel ? 1 : 0,
+        transition: "right 0.5s ease, opacity 0.5s ease-out"
+      }}
+    />
+    <OverlaySidebar
+      overlays={overlays} setOverlays={setOverlays}
+      style={{
+        right: rightPanel ? -500 : 100,
+        opacity: rightPanel ? 0 : 1,
+        transition: "right 0.5s ease, opacity 0.5s ease-out"
       }}
     />
 

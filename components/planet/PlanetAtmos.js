@@ -132,7 +132,7 @@ export default function PlanetAtmos(props) {
       value: new Matrix4()
     },
     u_lightDir: {
-      value: new Vector3(-10, -6, -1)
+      value: props.lightDir
     },
     u_scatCoef: {
       value: props.atmosScatter
@@ -144,7 +144,7 @@ export default function PlanetAtmos(props) {
       value: 30.0
     }
   }),
-    [props.atmosDensity, props.atmosScatter]
+    [props.atmosDensity, props.atmosScatter, props.lightDir]
 
   )
 

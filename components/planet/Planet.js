@@ -96,7 +96,7 @@ export default function Planet(props) {
         value: normalTexture
       },
       u_lightDir: {
-        value: new Vector3(-10, -6, -1)
+        value: props.lightDir
       },
       u_temperature: {
         value: temperature
@@ -110,9 +110,11 @@ export default function Planet(props) {
         // 5 - minerały
       }
     }),
-    [colorTexture, temperature, normalTexture, props.overlay]
+    [colorTexture, temperature, normalTexture, props.overlay, props.lightDir]
   );
-  useFrame((state, delta) => {meshRef.current.rotation.y += delta * props.rotationSpeed})
+  useFrame((state, delta) => {
+    meshRef.current.rotation.y += delta * props.rotationSpeed
+  })
 
   const geometry = new SphereGeometry(1.0, 128, 64)
   geometry.computeVertexNormals()

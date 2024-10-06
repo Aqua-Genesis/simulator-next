@@ -72,8 +72,14 @@ export default function Page() {
 
 
     <div className="flex items-center justify-center w-full h-full">
-      <PlanetCanvas overlay={1} volcanic={100} rotationSpeed={0.1}
-        atmosDensity={4.0} atmosScatter={new Vector3(0.7, 1.3, 2.0)}/>
+      <PlanetCanvas overlay={0} 
+        // 0 - no
+        // 1 - volcanic
+        //
+
+        volcanic={100} rotationSpeed={0.1}
+        atmosDensity={6.0} atmosScatter={new Vector3(0.9, 1.4, 2.0)}
+        distance={3.5} lightDir={new Vector3(-2, -2, -2)}/>
     </div>
 
     <InputWidget

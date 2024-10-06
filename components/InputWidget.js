@@ -4,7 +4,7 @@ export default function InputWidget({values, setValues, inputs, isSelectable, ha
 
   function handleChange(name, value) {
     let newValues = {...values};
-    newValues[name] = value;
+    newValues[name] = parseFloat(value);
     setValues(newValues);
   }
 

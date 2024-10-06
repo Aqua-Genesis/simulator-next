@@ -4,6 +4,7 @@ import {inputsElements, inputsOther, defaultValues, colours} from "@/components/
 import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import Logo from "@/components/Logo";
+import PieChart from "@/components/chart";
 
 
 export default function Page() {
@@ -11,12 +12,13 @@ export default function Page() {
   const router = useRouter();
   const [values, setValues] = useState(defaultValues);
   const [pieData, setPieData] = useState([]);
+
   useEffect(() => {
     const newPieData = [];
     for (const [key, value] of Object.entries(values)) {
       if (colours[key] === "#56a3a6") continue;
       newPieData.push({
-        label: key,
+        name: key,
         value: value,
         color: colours[key]
       })
@@ -44,7 +46,7 @@ export default function Page() {
         />
 
         <div className="flex items-center justify-center w-1/3 h-full">
-          <p className="default">Pie chart</p>
+          <PieChart data={pieData}/>
           <button
             onClick={()=>router.push("/simulation")}
             className="default text-gray-900 bg-blue2 text-2xl pt-3 pb-2 px-8 absolute -bottom-0"

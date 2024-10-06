@@ -1,7 +1,7 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import { degToRad } from "three/src/math/MathUtils.js";
-import { Matrix3, Matrix4, Vector3 } from "three/src/Three.js";
+import { Matrix3, Matrix4, ShaderMaterial, Vector3 } from "three/src/Three.js";
 
 const planetAtmosFragmentShader = `
 vec3 v_rayDir;
@@ -88,7 +88,7 @@ void main() {
       vec3 pos = u_rayOrigin + v_rayDir * distance;
       vec3 ins = in_scatter(pos, distance - _start);
       final_color.rgb += ins * step * u_scatCoef;
-      final_color.a += length(ins) * step;
+      final_color.a += density_at_point(pos) * step;
     }
     
     gl_FragColor = final_color;
@@ -159,18 +159,23 @@ export default function PlanetAtmos(props) {
     ref.current.uniforms.u_orientation.value = orientation;
   });
 
+  const shaderMaterial = useMemo(() => {
+        return new ShaderMaterial({
+            vertexShader: planetAtmosVertexShader,
+            fragmentShader: planetAtmosFragmentShader,
+            uniforms: uniforms,
+      transparent: true
+        });
+    }, [uniforms]);
+
+  ref.current = shaderMaterial
+
   return (
     <mesh
       {...props}
     >
       <planeGeometry args={[2, 2]} />
-      <shaderMaterial
-        fragmentShader={planetAtmosFragmentShader}
-        vertexShader={planetAtmosVertexShader}
-        uniforms={uniforms}
-        transparent={true}
-        ref={ref}
-      />
+      <primitive object={ref.current} attach="material" />
     </mesh>
   )
 }

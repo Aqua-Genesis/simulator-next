@@ -8,15 +8,20 @@ import OverlaySidebar from "@/components/OverlaySidebar";
 import { Vector3 } from "three";
 import LifeSidebar from "@/components/LifeSidebar";
 import Logo from "@/components/Logo";
+import {Button} from "@/components/Buttons";
+import {useRouter} from "next/navigation";
+import LifeScore from "@/components/LifeScore";
 
 
 export default function Page() {
 
+  const router = useRouter();
   const [planetType, setPlanetType] = useState("");
   const [values, setValues] = useState(defaultValues);
   const [overlays, setOverlays] = useState(overlayOptions);
   const [leftPanel, setLeftPanel] = useState("none");
   const [rightPanel, setRightPanel] = useState("none");
+  const [score, setScore] = useState(0);
 
   function handleLeftPanelChange (value) {
     if(leftPanel === value) setLeftPanel("none");
@@ -33,6 +38,25 @@ export default function Page() {
 
   return <div className="flex flex-row flex-grow w-full h-full bg-background px-24">
     <Logo/>
+
+    <LifeScore score={score} style={{
+      position: "absolute",
+      top: "10vh",
+      left: "50%",
+      zIndex: 20,
+      transform: "translate(-50%, -50%)",
+    }}/>
+
+    <Button text="Finished!" onClick={()=>router.push("/finish")}
+            style={{
+              position: "absolute",
+              bottom: "5vh",
+              left: "50%",
+              zIndex: 20,
+              transform: "translate(-50%, -50%)",
+            }}
+    />
+
     <SideButton
       text="Elements"
       position="top-right"

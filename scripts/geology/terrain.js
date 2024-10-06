@@ -1,6 +1,5 @@
 import { xyzListToUvHeight } from "./planet_renderer";
 import { PointRender } from "./point_render";
-import { Renderer } from "./renderer";
 
 const { STEEPNESS, AMPLITUDE, FREQUENCY, TECTONIC_INFLUENCE } = require("./global")
 const { Planet } = require("./planet")
@@ -81,8 +80,10 @@ export function get_terrain(){
     let concatted = new_terrain.concat(planet.geologicBreaks)
     console.log(concatted)
     console.log("XDD")
-    let colours = Renderer.convertToVerticesColourBased(concatted)["colors"]
+    // let colours = Renderer.convertToVerticesColourBased(concatted)["colors"]
+    let colours = Array(1500).fill([0.5, 0.5, 0])
     // Create a new array to hold the modified values
+    console.log("SDFSEFSFSDRGDG")
     console.log(colours)
     let uv = xyzListToUvHeight(new_terrain)
     console.log(uv)

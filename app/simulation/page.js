@@ -11,6 +11,7 @@ import Logo from "@/components/Logo";
 import {Button} from "@/components/Buttons";
 import {useRouter} from "next/navigation";
 import LifeScore from "@/components/LifeScore";
+import arrayShuffle from 'array-shuffle';
 
 
 export default function Page() {
@@ -21,8 +22,11 @@ export default function Page() {
   const [overlays, setOverlays] = useState(overlayOptions);
   const [leftPanel, setLeftPanel] = useState("top");
   const [rightPanel, setRightPanel] = useState("top");
-  const [score, setScore] = useState(0);
-  const [achievements, setAchievements] = useState(["Sulphur", "Phosphorus"]);
+  const [score, setScore] = useState(Math.floor((Math.random()) * 1000));
+  const [temperature, setTemperature] = useState(Math.floor((Math.random()-0.5) * 50));
+  const [achievements, setAchievements] = useState(
+    arrayShuffle(["Sulphur", "Phosphorus", "Silicon", "Nitrogen", "Titanium"]).slice(0, 3)
+  );
 
   function handleLeftPanelChange (value) {
     if(leftPanel === value) setLeftPanel("none");
@@ -38,6 +42,7 @@ export default function Page() {
   }, []);
   useEffect(() => {
     sessionStorage.setItem('score', score.toString());
+    sessionStorage.setItem('temperature', temperature.toString());
     sessionStorage.setItem('achievements', JSON.stringify(achievements));
   }, [score, achievements]);
 

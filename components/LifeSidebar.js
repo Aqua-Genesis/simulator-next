@@ -4,13 +4,13 @@ import Image from "next/image";
 import {useState} from "react";
 
 
-export function Achievements({selectedLife, setSelectedLife, highlight, list}) {
+export function Achievements({selectedLife, setSelectedLife, highlight, list, size=90}) {
   return <div className={highlight ? "flex flex-wrap mb-8 justify-center":"flex flex-wrap mb-8"}>
     {list.map(life =>
       <Image key={life.name} src={life.imgSrc} alt={life.name}
              className="m-2 rounded-full"
              onClick={() => setSelectedLife(life.name)}
-             width={90} height={90}
+             width={size} height={size}
              style={highlight ? selectedLife === life.name ? {
                boxShadow: "0px 0px 5px white",
              } : {

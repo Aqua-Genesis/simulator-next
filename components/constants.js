@@ -169,8 +169,7 @@ for (const group of inputsElements.concat(inputsOther)) {
 }
 
 export const overlayOptions = {
-  "Temperature at a seabed": false,
-  "Pressure at a seabed": false,
+  "Material composition": false,
   "Volcanic activity hotspots": false,
   "Life appearances": false,
 }

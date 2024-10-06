@@ -3,7 +3,7 @@ import { generateTemperatureData } from "./temperature";
 
 const width = 2048;
 const height = 1024;
-const fillSize = 16;
+const fillSize = 48;
 
 function blurTexture(texture, renderer) {
   // Create a render target to store the blurred texture
@@ -86,6 +86,50 @@ export function getTextureFromPoints(points, renderer) {
 
   points.forEach(point => {
     const { u, v, r, g, b } = point; // uv should be in the range [0, 1]
+    const xCenter = Math.floor(u * width);
+    const yCenter = Math.floor((1 - v) * height); // Invert Y-axis for texture coordinates
+
+    // Ensure the coordinates are within the bounds of the texture
+    for (let dx = -fillSize; dx <= fillSize; dx++) {
+      for (let dy = -fillSize; dy <= fillSize; dy++) {
+        if (dx * dx + dy * dy >= fillSize * fillSize) continue
+        const x = xCenter + dx;
+        const y = yCenter + dy;
+
+        // Check bounds
+        if (x >= 0 && x < width && y >= 0 && y < height) {
+          const index = (y * width + x) * 4;
+
+          // Set the color in RGBA format
+          data[index] = r * 255;     // Red
+          data[index + 1] = g * 255; // Green
+          data[index + 2] = b * 255; // Blue
+          data[index + 3] = 255; // Alpha (fully opaque)
+        }
+      }
+    }
+  });
+
+  // Create a Three.js DataTexture
+  const texture = new DataTexture(data, width, height, RGBAFormat);
+  texture.wrapS = RepeatWrapping;
+  texture.wrapT = RepeatWrapping;
+  texture.needsUpdate = true; // Notify Three.js that the texture needs to be updated
+
+  return blurTexture(texture, renderer);
+}
+
+export function getTextureFromPoints2(points, renderer) {
+  const size = width * height * 4; // 4 components per pixel (RGBA)
+  const data = new Uint8Array(size);
+
+  console.log(points);
+  for (let i = 0; i < size; i++) {
+    data[i] = 0;
+  }
+
+  points.forEach(point => {
+    const [ u, v, h, [r, g, b]] = point; // uv should be in the range [0, 1]
     const xCenter = Math.floor(u * width);
     const yCenter = Math.floor((1 - v) * height); // Invert Y-axis for texture coordinates
 

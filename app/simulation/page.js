@@ -114,7 +114,10 @@ export default function Page() {
 
 
     <div className="flex items-center justify-center w-full h-full">
-      <PlanetCanvas overlay={overlays["Volcanic activity hotspots"] ? 1 : 0}
+      <PlanetCanvas overlay={overlays["Volcanic activity hotspots"] ? 1 : 
+        (overlays["Material composition"] ? 2 : (
+          overlays["Material composition"] ? 3 : 0
+        ))}
         // 0 - no
         // 1 - volcanic
         //

@@ -2,13 +2,16 @@ import { useMemo, useRef } from "react";
 import { useFrame, useThree } from "react-three-fiber";
 import { Color } from "three";
 import { ShaderMaterial, SphereGeometry, TextureLoader, Vector3 } from "three/src/Three.js";
-import { getTextureFromPoints } from "./generateTextures";
+import { getTextureFromPoints, getTextureFromPoints2 } from "./generateTextures";
 import { getTemperaturePoints } from "./temperature";
+import { get_terrain } from "@/scripts/geology/terrain";
 
 const planetSurfaceFragmentShader = `
 uniform vec3 u_color;
 uniform sampler2D u_surface;
 uniform sampler2D u_normal;
+uniform sampler2D u_composition;
+uniform sampler2D u_life;
 uniform sampler2D u_temperature;
 uniform vec3 u_lightDir;
 uniform int u_overlay;
@@ -43,17 +46,20 @@ vec3 vulkanic(float val) {
 }
 
 void main() {
-  gl_FragColor = vec4(v_normal, 1.0);
   vec3 baseColor = texture(u_surface, v_uv).xyz;
+  vec4 temp = texture(u_temperature, v_uv);
+  vec3 composition = texture(u_composition, v_uv).rgb;
+  vec4 life = texture(u_life, v_uv);
   vec3 normal = texture(u_normal, v_uv).xyz * 2.0 - 1.0;
   normal = normalize(tbn * normal);
   vec4 final_color = vec4(baseColor * clamp(dot(normal, -normalize(u_lightDir)), 0.02, 1.0), 1.0);
 
   if(u_overlay == 1) {
-    vec4 temp = texture(u_temperature, v_uv);
     final_color.rgb += vulkanic(temp.r) * temp.r;
   } else if (u_overlay == 2) {
-
+    final_color.rgb = composition;
+  } else if (u_overlay == 3) {
+    final_color += vec4(life.rgb * life.a, 1.0);
   }
 
   gl_FragColor = final_color;
@@ -85,6 +91,7 @@ export default function Planet(props) {
   let colorTexture = loader.load("planet.jpg")
   let normalTexture = loader.load("planet-norm.jpg")
   let temperature = getTextureFromPoints(getTemperaturePoints(props.volcanic), gl)
+  let composition = getTextureFromPoints2(get_terrain(), gl)
   const uniforms = useMemo(
     () => ({
       u_color: {
@@ -102,16 +109,17 @@ export default function Planet(props) {
       u_temperature: {
         value: temperature
       },
+      u_composition: {
+        value: composition
+      },
       u_overlay: {
         value: 0
         // 1 - vulkanic
-        // 2 - odlodzona
-        // 3 - odwodniona
-        // 4 - tectonic
-        // 5 - minerały
+        // 2 - materialy
+        // 3 - zycie
       }
     }),
-    [colorTexture, temperature, normalTexture, props.lightDir]
+    [colorTexture, temperature, normalTexture, composition, props.lightDir]
   );
 
   useFrame(() => {

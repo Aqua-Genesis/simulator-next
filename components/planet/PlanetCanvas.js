@@ -21,7 +21,7 @@ export default function PlanetCanvas(props) {
     >
         <Planet overlay={props.overlay} volcanic={props.volcanic} rotationSpeed={props.rotationSpeed} lightDir={props.lightDir}/>
         <PlanetFocus/>
-        <PlanetAtmos atmosDensity={props.atmosDensity} atmosScatter={props.atmosScatter} lightDir={props.lightDir}/>
+        <PlanetAtmos atmosDensity={6.0} atmosScatter={props.atmosScatter} lightDir={props.lightDir}/>
         {/* <Sun lightDir={props.lightDir}/> */}
         </Canvas>
     )

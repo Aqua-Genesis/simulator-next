@@ -83,7 +83,7 @@ export default function Planet(props) {
   let loader = new TextureLoader()
   let colorTexture = loader.load("planet.jpg")
   let normalTexture = loader.load("planet-norm.jpg")
-  let temperature = getTextureFromPoints(getTemperaturePoints(25), gl)
+  let temperature = getTextureFromPoints(getTemperaturePoints(props.volcanic), gl)
   const uniforms = useMemo(
     () => ({
       u_color: {
@@ -102,7 +102,7 @@ export default function Planet(props) {
         value: temperature
       },
       u_overlay: {
-        value: 1
+        value: props.overlay
         // 1 - vulkanic
         // 2 - odlodzona
         // 3 - odwodniona
@@ -110,9 +110,9 @@ export default function Planet(props) {
         // 5 - minerały
       }
     }),
-    [colorTexture, temperature, normalTexture]
+    [colorTexture, temperature, normalTexture, props.overlay]
   );
-  useFrame((state, delta) => {meshRef.current.rotation.y += delta / 8.0})
+  useFrame((state, delta) => {meshRef.current.rotation.y += delta * props.rotationSpeed})
 
   const geometry = new SphereGeometry(1.0, 128, 64)
   geometry.computeVertexNormals()

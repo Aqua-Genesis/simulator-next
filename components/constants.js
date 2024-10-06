@@ -151,27 +151,27 @@ export const lifeforms = [
   {
     name: "Silicon",
     imgSrc: "/life/silicon.png",
-    description: "Needs Silicon and Oxygen in order to spawn. Can sustain high pressures and requires 400 deg minimum."
+    description: "Needs Silicon and Oxygen in order to spawn. Can sustain high pressures and requires 400°C minimum."
   },
   {
     name: "Nitrogen",
     imgSrc: "/life/nitrogen.png",
-    description: "Needs Oxygen and Nitrogen or Ammonia to spawn. Needs 0 - 300 deg temperature range. Cannot sustain high pressures."
+    description: "Needs Oxygen and Nitrogen or Ammonia to spawn. Needs 0-300°C temperature range. Cannot sustain high pressures."
   },
   {
     name: "Sulphur",
     imgSrc: "/life/sulphur.png",
-    description: "Needs Oxygen and Sulfur in order to spawn. Needs 100-500 deg temperature range. Can create localised acidic environments."
+    description: "Needs Oxygen and Sulfur in order to spawn. Needs 100-500°C temperature range. Can create localised acidic environments."
   },
   {
     name: "Titanium",
     imgSrc: "/life/titanium.png",
-    description: "Needs Oxygen and Titanium in order to spawn. Needs 300-800 deg temperature range."
+    description: "Needs Oxygen and Titanium in order to spawn. Needs 300-800°C temperature range."
   },
   {
     name: "Phosphorus",
     imgSrc: "/life/phosphor.png",
-    description: "Needs Oxygen and Phosphorus. Needs 0 - 30 deg temperature range."
+    description: "Needs Oxygen and Phosphorus. Needs 0-300°C temperature range."
   },
 
 ]
